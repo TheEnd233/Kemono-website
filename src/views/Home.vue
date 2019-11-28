@@ -75,7 +75,7 @@
 				<router-link to="/search/images">Search everything...</router-link>
 			</div>
 		</div>
-		<!-- <div class="container-home" id="discord">
+		<div class="container-home" id="discord">
 			<div class="header">
 				<p>Join us on Discord</p>
 			</div>
@@ -84,7 +84,7 @@
 					<img src="https://discordapp.com/api/guilds/416716547911057408/widget.png?style=banner3">
 				</a>
 			</div>
-		</div> -->
+		</div>
 	</div>
 </div>
 </template>
