@@ -31,9 +31,9 @@ const webpackConfig = merge(baseWebpackConfig, {
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
       'process.env': env,
-      API_BASE_URL: JSON.stringify('https://nekos.moe/api/v1/'),
-      IMAGE_BASE_URL: JSON.stringify('https://nekos.moe/image/'),
-      THUMBNAIL_BASE_URL: JSON.stringify('https://nekos.moe/thumbnail/')
+      API_BASE_URL: JSON.stringify('https://kemono.gaygay.me/api/v1/'),
+      IMAGE_BASE_URL: JSON.stringify('https://kemono.gaygay.me/image/'),
+      THUMBNAIL_BASE_URL: JSON.stringify('https://kemono.gaygay.me/thumbnail/')
     }),
     new UglifyJsPlugin({
       uglifyOptions: {

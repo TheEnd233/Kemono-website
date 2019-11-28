@@ -2,14 +2,14 @@
 <div id="base-home">
 	<div class="grid-item left">
 		<div class="welcome">
-			<p class="header">Welcome to Nekos.moe! <b-tag class="beta" type="is-dark">Beta</b-tag></p>
-			<p>Nekos.moe is a collection of high-quality images featuring characters with cat-like appearances.</p>
+			<p class="header">Welcome to Kemono! <b-tag class="beta" type="is-dark">Beta</b-tag></p>
+			<p>Kemono is a collection of high-quality images featuring characters with kemono-girl appearances.</p>
 		</div>
 		<!-- <div class="attention" v-if="loggedIn && !seenNotice('newDesign')">
 			<b-message title="Site Updated" type="is-info" has-icon @close="ackNotice('newDesign')">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt ut eligendi laudantium mollitia, dolorum impedit cum exercitationem! Officiis, explicabo dolores minima asperiores, sequi, sit a eaque fugiat corrupti amet et.</b-message>
 		</div> -->
 		<div class="search">
-			<p class="header">Explore Nekos</p>
+			<p class="header">{{$t('m.explore')}}</p>
 			<div class="search-bar">
 				<b-taginput v-model="searchInput" maxlength="50" :has-counter="false"
 					autocomplete allow-new ellipsis
@@ -75,7 +75,7 @@
 				<router-link to="/search/images">Search everything...</router-link>
 			</div>
 		</div>
-		<div class="container-home" id="discord">
+		<!-- <div class="container-home" id="discord">
 			<div class="header">
 				<p>Join us on Discord</p>
 			</div>
@@ -84,7 +84,7 @@
 					<img src="https://discordapp.com/api/guilds/416716547911057408/widget.png?style=banner3">
 				</a>
 			</div>
-		</div>
+		</div> -->
 	</div>
 </div>
 </template>

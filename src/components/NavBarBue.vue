@@ -1,7 +1,7 @@
 <template>
 <nav id="navbar" class="navbar is-primary">
 	<div class="navbar-brand">
-		<router-link class="navbar-item is-size-4 has-text-weight-bold" to="/">Nekos.moe</router-link>
+		<router-link class="navbar-item is-size-4 has-text-weight-bold" to="/">Kemono</router-link>
 
 		<button class="button is-primary navbar-burger" @click="toggleMenu">
 			<span></span>
@@ -48,6 +48,17 @@
 				</b-dropdown-item>
 				<b-dropdown-item @click="logoutUser">
 					<b-icon icon="logout"></b-icon><span>Log Out</span>
+				</b-dropdown-item>
+			</b-dropdown>
+
+			<b-dropdown hoverable>
+				<a class="navbar-item has-text-white is-size-5-desktop" slot="trigger">
+					<span>Change Language</span><b-icon icon="menu-down"></b-icon>
+				</a>
+
+				<b-dropdown-item has-link>
+					<a href="#" @click="changeLangEvent('zh-CN')"><span>中文</span></a>
+					<a href="#" @click="changeLangEvent('en-US')"><span>English</span></a>
 				</b-dropdown-item>
 			</b-dropdown>
 
@@ -105,6 +116,10 @@ export default {
 		}
 	},
 	methods: {
+	    changeLangEvent(lang) {
+			this.$cookies.set('lang', lang, 999);
+			window.location.reload();
+	    },
 		logoutUser() {
 			this.$store.commit('logout');
 			this.$router.push('/');

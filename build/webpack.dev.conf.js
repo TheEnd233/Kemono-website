@@ -45,9 +45,9 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 	plugins: [
 		new webpack.DefinePlugin({
 			'process.env': require('../config/dev.env'),
-			API_BASE_URL: JSON.stringify('http://localhost:8082/api/v1/'),
-			IMAGE_BASE_URL: JSON.stringify('http://localhost:8082/image/'),
-			THUMBNAIL_BASE_URL: JSON.stringify('http://localhost:8082/thumbnail/')
+			API_BASE_URL: JSON.stringify('https://kemono.gaygay.me/api/v1/'),
+            IMAGE_BASE_URL: JSON.stringify('https://kemono.gaygay.me/image/'),
+            THUMBNAIL_BASE_URL: JSON.stringify('https://kemono.gaygay.me/thumbnail/')
 		}),
 		// https://github.com/glenjamin/webpack-hot-middleware#installation--usage
 		new webpack.HotModuleReplacementPlugin(),

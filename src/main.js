@@ -11,6 +11,19 @@ import Buefy from 'buefy';
 
 import App from '@/App';
 import NavBarBue from '@/components/NavBarBue';
+import VueI18n from 'vue-i18n';
+
+Vue.use(require('vue-cookies'))
+
+Vue.use(VueI18n)
+const i18n = new VueI18n({
+	locale: $cookies.get('lang'),   // 语言标识
+	//this.$i18n.locale // 通过切换locale的值来实现语言切换
+	messages: {
+		'zh-CN': require('./common/lang/zh'),   // 中文语言包
+		'en-US': require('./common/lang/en')    // 英文语言包
+    }
+})
 
 Vue.config.productionTip = false;
 
@@ -39,7 +52,7 @@ function requireAll(requireContext) {
 }
 
 Vue.use(VueTimeago, {
-	locale: 'en-US',
+	locale: 'zh-CN',
 	locales: requireAll(require.context("vue-timeago/locales", true, /\.json$/))
 });
 
@@ -50,6 +63,7 @@ Vue.use(VueAnalytics, {
 
 const app = new Vue({
 	el: '#app',
+	i18n,
 	router,
 	store,
 	...App
