@@ -19,14 +19,14 @@
 				</div>
 			</div>
 
-			<p>Artist: {{ post.artist || 'Unknown' }}</p>
+			<p>{{$t('m.artist')}}: {{ post.artist || 'Unknown' }}</p>
 			<b-tag v-for="(tag, i) of tagsPreview" :key="i" :type="post.nsfw ? 'is-danger' : 'is-primary'">{{ tag }}</b-tag><!--
 			--><b-tag v-if="post.tags.length > 12" class="tag-more" :type="post.nsfw ? 'is-danger' : 'is-primary'">+ {{post.tags.length - 12}} more</b-tag>
 		</div>
 		<footer class="card-footer">
-			<router-link class="card-footer-item" :to="'/post/' + post.id">View</router-link>
-			<a v-if="loggedIn" @click="like()" class="card-footer-item has-text-success">{{ user.likes.includes(post.id) ? 'Unlike' : 'Like' }}</a>
-			<a v-if="loggedIn" @click="like('favorites')" class="card-footer-item has-text-danger">{{ user.favorites.includes(post.id) ? 'Unfavorite' : 'Favorite' }}</a>
+			<router-link class="card-footer-item" :to="'/post/' + post.id">{{$t('m.cardview')}}</router-link>
+			<a v-if="loggedIn" @click="like()" class="card-footer-item has-text-success">{{ user.likes.includes(post.id) ? $t('m.cardunlike') : $t('m.cardlike') }}</a>
+			<a v-if="loggedIn" @click="like('favorites')" class="card-footer-item has-text-danger">{{ user.favorites.includes(post.id) ? $t('m.cardunfav') : $t('m.cardfav') }}</a>
 		</footer>
 	</div>
 </template>
