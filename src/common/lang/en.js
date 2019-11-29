@@ -1,4 +1,13 @@
 export const m = { 
+    navhome: 'Home',
+    navposts: 'Posts',
+    navusers: 'Users',
+    navupload: 'Upload',
+    navaccount: 'My Account',
+    navprofile: 'Profile',
+    navset: 'Settings',
+    navlogout: 'Log Out',
+    navlogin: 'Log In',
     explore: 'Explore Wifes',
     welcometitle: 'Welcome to Kemono! ',
     welcomemessage: 'Kemono is a collection of high-quality images featuring characters with kemono-girl appearances.',
@@ -180,6 +189,5 @@ export const m = {
     uploadimportsizetitle: 'Image Too Large',
     uploadimportsizemsg: 'This image was unable to be imported because it exceeds the size limit of 3MB. Please resize the image down to a maximum of 2,000 pixels or convert it to a high-quality JPG.',
     uploadimporterr: 'Error',
-    guidelinespath: '/uploading-guidelines',
-
+    guidelinespath: '/uploading-guidelines'
 }

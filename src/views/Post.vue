@@ -28,14 +28,14 @@
 
 			<p class="relationship" v-if="!image.pending">
 				<button v-if="loggedIn && user" class="button is-info" :class="{ 'is-outlined': !user.likes.includes(image.id) }"
-					@click="like"><b-icon icon="thumb-up"></b-icon>{{ image.likes }} {{$t('m.likebtn')}}{{ image.likes !== 1 ? 's' : '' }}</button>
+					@click="like"><b-icon icon="thumb-up"></b-icon>{{ image.likes }} {{$t('m.likebtn')}}</button>
 				<button v-if="loggedIn && user" class="button is-danger" :class="{ 'is-outlined': !user.favorites.includes(image.id) }"
-					@click="favorite"><b-icon icon="heart"></b-icon>{{ image.favorites }} {{$t('m.favbtn')}}{{ image.favorites !== 1 ? 's' : '' }}</button>
+					@click="favorite"><b-icon icon="heart"></b-icon>{{ image.favorites }} {{$t('m.favbtn')}}</button>
 
 				<button v-if="!loggedIn || !user" class="button is-white"><b-icon icon="thumb-up">
-					</b-icon>{{ image.likes }} {{$t('m.likebtn')}} {{ image.likes !== 1 ? 's' : '' }}</button>
+					</b-icon>{{ image.likes }} {{$t('m.likebtn')}} </button>
 				<button v-if="!loggedIn || !user" class="button is-white"><b-icon icon="heart">
-					</b-icon>{{ image.favorites }} {{$t('m.favbtn')}}{{ image.favorites !== 1 ? 's' : '' }}</button>
+					</b-icon>{{ image.favorites }} {{$t('m.favbtn')}}</button>
 			</p>
 
 			<div class="tags">

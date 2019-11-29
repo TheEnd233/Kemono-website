@@ -11,10 +11,10 @@
 	</div>
 	<div class="navbar-menu">
 		<div class="navbar-start">
-			<router-link class="navbar-item is-size-5-desktop" to="/"><b-icon icon="home"></b-icon>Home</router-link>
-			<router-link class="navbar-item is-size-5-desktop" to="/search/images"><b-icon icon="format-list-bulleted"></b-icon>Posts</router-link>
-			<router-link class="navbar-item is-size-5-desktop" to="/search/users"><b-icon icon="account-multiple"></b-icon>Users</router-link>
-			<router-link class="navbar-item is-size-5-desktop" to="/upload"><b-icon icon="upload"></b-icon>Upload</router-link>
+			<router-link class="navbar-item is-size-5-desktop" to="/"><b-icon icon="home"></b-icon>{{$t('m.navhome')}}</router-link>
+			<router-link class="navbar-item is-size-5-desktop" to="/search/images"><b-icon icon="format-list-bulleted"></b-icon>{{$t('m.navposts')}}</router-link>
+			<router-link class="navbar-item is-size-5-desktop" to="/search/users"><b-icon icon="account-multiple"></b-icon>{{$t('m.navusers')}}</router-link>
+			<router-link class="navbar-item is-size-5-desktop" to="/upload"><b-icon icon="upload"></b-icon>{{$t('m.navupload')}}</router-link>
 		</div>
 
 		<div class="navbar-end">
@@ -30,7 +30,7 @@
 
 			<b-dropdown v-if="loggedIn" position="is-bottom-left" hoverable>
 				<a class="navbar-item has-text-white is-size-5-desktop" slot="trigger">
-					<span>My Account</span><b-icon icon="menu-down"></b-icon>
+					<span>{{($t('m.navaccount'))}}</span><b-icon icon="menu-down"></b-icon>
 				</a>
 
 				<b-dropdown-item custom><b>{{ user.username }}</b></b-dropdown-item>
@@ -38,22 +38,22 @@
 				<hr class="dropdown-divider">
 
 				<b-dropdown-item has-link>
-					<router-link :to="'/user/' + user.id"><b-icon icon="account"></b-icon><span>Profile</span></router-link>
+					<router-link :to="'/user/' + user.id"><b-icon icon="account"></b-icon><span>{{($t('m.navprofile'))}}</span></router-link>
 				</b-dropdown-item>
 
 				<hr class="dropdown-divider">
 
 				<b-dropdown-item has-link>
-					<router-link to="/settings"><b-icon icon="settings"></b-icon><span>Settings</span></router-link>
+					<router-link to="/settings"><b-icon icon="settings"></b-icon><span>{{($t('m.navset'))}}</span></router-link>
 				</b-dropdown-item>
 				<b-dropdown-item @click="logoutUser">
-					<b-icon icon="logout"></b-icon><span>Log Out</span>
+					<b-icon icon="logout"></b-icon><span>{{($t('m.navlogout'))}}</span>
 				</b-dropdown-item>
 			</b-dropdown>
 
 			<b-dropdown hoverable>
 				<a class="navbar-item has-text-white is-size-5-desktop" slot="trigger">
-					<span>Change Language</span><b-icon icon="menu-down"></b-icon>
+					<span>Language</span><b-icon icon="menu-down"></b-icon>
 				</a>
 
 				<b-dropdown-item has-link>
@@ -65,7 +65,7 @@
 			<b-dropdown v-if="!loggedIn" position="is-bottom-left">
 				<a class="navbar-item has-text-white is-size-5-desktop" slot="trigger">
 					<b-icon icon="login"></b-icon>
-					<span>Log In</span>
+					<span>{{($t('m.navnavlogin'))}}</span>
 				</a>
 
 				<b-dropdown-item custom paddingless>

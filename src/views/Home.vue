@@ -80,8 +80,8 @@
 				<p>{{$t('m.joingroup')}}</p>
 			</div>
 			<div class="embed">
-				<a href="https://discord.gg/Pk9YBTt">
-					<img src="https://discordapp.com/api/guilds/416716547911057408/widget.png?style=banner3">
+				<a href="https://jq.qq.com/?_wv=1027&k=5xQtYZB">
+					<img src="https://kemono.gaygay.me/static/img/nuko.gif">
 				</a>
 			</div>
 		</div>

@@ -9,16 +9,16 @@
 		</p>
 		<div class="likes">
 			<b-icon icon="thumb-up"></b-icon>
-			<span>{{ profile.likesReceived | humanize }} {{$t('m.likebtn')}}{{ profile.likesReceived === 1 ? '' : 's' }}</span>
+			<span>{{ profile.likesReceived | humanize }} {{$t('m.likebtn')}}</span>
 		</div>
 		<div class="favorites">
 			<b-icon icon="heart"></b-icon>
-			<span>{{ profile.favoritesReceived | humanize }} {{$t('m.favbtn')}}{{ profile.favoritesReceived === 1 ? '' : 's' }}</span>
+			<span>{{ profile.favoritesReceived | humanize }} {{$t('m.favbtn')}}</span>
 		</div>
 		<div class="stats">
 			<p>{{$t('m.jointime')}} <timeago :since="profile.createdAt"></timeago></p>
 			<p>{{$t('m.posted')}} {{ profile.uploads | humanize }} {{$t('m.images')}}</p>
-			<p>{{$t('m.hasgiven')}} {{ profile.likes.length | humanize }} {{$t('m.like')}}{{ profile.likes.length === 1 ? '' : 's' }} {{$t('m.and')}} {{ profile.favorites.length | humanize }} {{$t('m.fav')}}{{ profile.favorites.length === 1 ? '' : 's' }}</p>
+			<p>{{$t('m.hasgiven')}} {{ profile.likes.length | humanize }} {{$t('m.like')}} {{$t('m.and')}} {{ profile.favorites.length | humanize }} {{$t('m.fav')}}</p>
 		</div>
 	</div>
 	<div class="post-grid-wrapper">
