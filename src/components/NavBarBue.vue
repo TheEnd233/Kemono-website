@@ -15,6 +15,7 @@
 			<router-link class="navbar-item is-size-5-desktop" to="/search/images"><b-icon icon="format-list-bulleted"></b-icon>{{$t('m.navposts')}}</router-link>
 			<router-link class="navbar-item is-size-5-desktop" to="/search/users"><b-icon icon="account-multiple"></b-icon>{{$t('m.navusers')}}</router-link>
 			<router-link class="navbar-item is-size-5-desktop" to="/upload"><b-icon icon="upload"></b-icon>{{$t('m.navupload')}}</router-link>
+			<a class="navbar-item is-size-5-desktop" href="https://ex.gaygay.me" target="_blank"><b-icon icon="circle"></b-icon>Devilman</a>
 		</div>
 
 		<div class="navbar-end">
