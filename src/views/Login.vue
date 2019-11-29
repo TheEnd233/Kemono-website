@@ -8,7 +8,7 @@
 			<b-input v-model="login.password" name="login-pass" type="password" password-reveal required placeholder="password" icon="lock"></b-input>
 		</b-field>
 		<button class="button is-primary" @click="login"><b-icon icon="login"></b-icon>{{$t('m.loginbtn')}}</button>
-		<button class="button is-primary is-outlined" @click="$router.push('/register')"><b-icon icon="account-plus"></b-icon>Register</button>
+		<button class="button is-primary is-outlined" @click="$router.push('/register')"><b-icon icon="account-plus"></b-icon>{{$t('m.loginregbtn')}}</button>
 		<b-message v-show="loginError" type="is-danger" id="login-error" has-icon><b>{{$t('m.loginerr')}}</b><br>{{ loginError }}</b-message>
 	</div>
 </div>

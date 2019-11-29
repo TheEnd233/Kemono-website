@@ -37,6 +37,7 @@ export const m = {
     passwd: '密码',
     loginbtn: 'Link Start！',
     loginerr: '登录出现错误惹',
+    loginregbtn: '注册',
     denypost: '驳回投稿',
     denyreason: '驳回投稿的理由',
     canceldeny: '取消',

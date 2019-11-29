@@ -37,6 +37,7 @@ export const m = {
     passwd: 'Password',
     loginbtn: 'Log In',
     loginerr: 'Login Error',
+    loginregbtn: 'Register',
     denypost: 'Deny Post',
     denyreason: 'What is your reason for denying post',
     canceldeny: 'Cancel',
