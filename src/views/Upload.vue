@@ -102,7 +102,7 @@ export default {
 					message: this.$t('m.uploadimghintmsg')
 				});
 			}
-			if (this.size > 3145728) {
+			if (this.size > 10145728) {
 				return this.$dialog.alert({
 					type: 'is-warning',
 					hasIcon: true,
