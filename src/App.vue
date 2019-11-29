@@ -8,8 +8,7 @@
 		</transition>
 	</div>
 	<footer>
-		&copy; Kemono 2019 &nbsp;|&nbsp; Made with ♥ by Oniya<br>
-		<!-- GitHub: <a href="https://github.com/Nekos-moe/website" target="_blank">Website</a>, <a href="https://github.com/Nekos-moe/api" target="_blank">API</a> &nbsp;|&nbsp; <a href="https://docs.nekos.moe/" target="_blank">API docs</a> -->
+		&copy; <a href="https://github.com/oniyakun/website" target="_blank">Kemono</a> 2019 &nbsp;|&nbsp; Made with ♥ by Oniya
 	</footer>
 </div>
 </template>
