@@ -82,7 +82,7 @@ export default {
 					hasIcon: true,
 					title: this.$t('m.regsuccesstitle'),
 					message: this.$t('m.regsuccessmsg1') + username + this.$t('m.regsuccessmsg2'),
-					confirmText: this.$t('m.regsuccesscomfirm'),
+					confirmText: this.$t('m.regsuccessconfirm'),
 					onConfirm: () => {
 						this.$router.push('/');
 					}
