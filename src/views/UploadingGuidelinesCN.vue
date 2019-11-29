@@ -1,53 +1,50 @@
 <template>
 <body>
 	<div id="base-how-to-upload">
-		<h3>Uploading Guidelines</h3>
-		<h5>Images</h5>
+		<h3>上传须知</h3>
+		<h5>关于图片</h5>
 		<p>
-			<strong>Quality:</strong> All uploads must be the source image. Compressed versions will be denied.
+			<strong>图片质量:</strong> 所有上传的图片必须为原图，任何被压缩过的图片将不会通过审核
 			<ul>
-				<li><strong>If an image is too large for uploading:</strong> You may re-save it as a high quality JPG (quality: ~97) and scale it down to our maximum dimensions of 2000px if needed.</li>
-				<li><strong>If the source is compressed or low-quality:</strong> You may use <a href="https://github.com/lltcggie/waifu2x-caffe/releases" target="_blank">waifu2x</a> to get it to an acceptable state.</li>
+				<li><strong>如果图片太大导致无法上传：</strong> 你可以将其重新保存为高质量JPG（~97），并保证不超过我们的最大分辨率2000px。</li>
+				<li><strong>如果原图过于模糊：</strong> 你可以尝试使用 <a href="https://bigjpg.com/" target="_blank">Bigjpg</a> 来放大图片</li>
 			</ul>
 		</p>
 		<p>
-			<strong>Low Effort Images:</strong> Nekos.moe is intended to be a collection of high-quality images. Do not upload simple sketches or low effort drawings.
+			<strong>草稿或线稿：</strong> 我们皆在收集高质量图片，请不要上传过于简单或质量过低的图片。
 		</p>
 		<p>
-			<strong>Content:</strong> Nekos.moe is a website for images of characters with animal-like appearances. You may not upload images where characters do not have animal ears or an animal tail. The subject of the image must fit this requirement. For example, an image with multiple characters where only one fits this requirement is not allowed.
+			<strong>内容须知：</strong> Kemono是一个以二次元兽娘为主题的网站，你不能上传没有动物耳朵/尾巴的图片，否则可能无法通过审核。
 		</p>
 		<p>
-			<strong>3D:</strong> Images of real people (or your cat) are not allowed. Unfortunately, cat girls do not exist yet in real life.
+			<strong>真人图片：</strong> 真人图片是不被允许上传的（包括Cosplay），不幸的是，现实里也没有猫猫女孩。
 		</p>
 		<p>
-			<strong>Spoilers:</strong> Images containing spoilers should not be uploaded. Repeated violations of this rule will result in a ban.
+			<strong>其他图片:</strong> 内容过激；无关的任何图片都不被允许上传，否则您有可能面临账户被删除的风险
 		</p>
 		<p>
-			<strong>Adult Content:</strong> You are allowed to upload images containing <u>moderate</u> amounts of sexual content.
-			These are referred to as "NSFW" (Not Safe for Work).
-			If you are not sure if an image should be labeled as "NSFW", then it should.<br><!--
-			-->Any account that uploads sexual content of minors (a.k.a. lolis) will be banned.
-		</p>
-		<p>
-			<strong>Self-uploads:</strong> Uploading your own artwork is generally not allowed. Nekos.moe is a place for people to share images they consider above-average. If you're uploading your own art you may have a biased view of it. There are plenty of other sites you can upload your personal work to.
+			<strong>色情内容:</strong> 你可以上传 <u>适度</u> 色情的图片.
+			这些被称为 "NSFW" (Not Safe for Work).
+			如果有任何你不确定是否为NSFW的内容，你应该默认为是色情内容<br><!--
+			-->本站严禁儿童色情内容，一旦发现立即封禁。
 		</p>
 
-		<h5>Tags</h5>
-		<p>Nekos.moe uses a tagging system similar to the one used by Danbooru. We use the same tags, but we use spaces instead.</p>
+		<h5>关于标签</h5>
+		<p>Kemono使用了一套完善的标签系统来帮助用户更快完成检索，所以请仔细阅读以下规范</p>
 		<p>
-			<strong>Help:</strong> If you need help tagging posts then read <a href="https://danbooru.donmai.us/wiki_pages/11292" target="_blank">howto:tag</a> and <a href="https://danbooru.donmai.us/wiki_pages/21977" target="_blank">howto:tag checklist</a>
+			<strong>标签帮助:</strong> 如果你需要任何关于标签的帮助可以阅读 <a href="https://danbooru.donmai.us/wiki_pages/11292" target="_blank">howto:tag</a> 和 <a href="https://danbooru.donmai.us/wiki_pages/21977" target="_blank">howto:tag checklist</a> （英语）
 		</p>
 		<p>
-			<strong>Required:</strong> All posts are required to have tags to make them easily searchable.
+			<strong>标签要求:</strong> 所有投稿都被要求含有标签以帮助用户更快检索内容。
 		</p>
 		<p>
-			<strong>Format:</strong> Unlike other sites, all tags use spaces. To separate tags use a comma. New lines and extra spaces around tags will be removed.
+			<strong>标签格式:</strong> 添加一个标签后使用回车键来确认添加，再添加另一个标签直至完成。
 		</p>
 		<p>
-			<strong>Copyrights and Characters:</strong> The copyrights and characters in a post should be tagged.
+			<strong>关于版权:</strong> 作品中的版权信息也应作为标签来标记在投稿内。
 		</p>
 		<p>
-			<strong>Artist:</strong> All posts should have their artist tagged. For help formatting an artist's name see <a href="https://danbooru.donmai.us/wiki_pages/15486" target="_blank">howto:artist</a>.
+			<strong>作者:</strong> 所有作品都应该标注其作者，有关作者名的格式请参考 <a href="https://danbooru.donmai.us/wiki_pages/15486" target="_blank">howto:artist</a>（英语）。
 		</p>
 	</div>
 </body>
