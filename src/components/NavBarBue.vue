@@ -20,11 +20,11 @@
 		<div class="navbar-end">
 			<b-dropdown v-if="loggedIn && user.roles && user.roles.length" position="is-bottom-left" hoverable>
 				<a class="navbar-item has-text-white is-size-5-desktop" slot="trigger">
-					<span>Moderation</span><b-icon icon="menu-down"></b-icon>
+					<span>{{$t('m.navadmin')}}</span><b-icon icon="menu-down"></b-icon>
 				</a>
 
 				<b-dropdown-item v-if="loggedIn && userCanApprove" has-link>
-					<router-link to="/pending"><b-icon icon="checkbox-multiple-marked-outline"></b-icon><span>Pending Posts</span></router-link>
+					<router-link to="/pending"><b-icon icon="checkbox-multiple-marked-outline"></b-icon><span>{{$t('m.navpending')}}</span></router-link>
 				</b-dropdown-item>
 			</b-dropdown>
 
@@ -53,7 +53,7 @@
 
 			<b-dropdown hoverable>
 				<a class="navbar-item has-text-white is-size-5-desktop" slot="trigger">
-					<span>Language</span><b-icon icon="menu-down"></b-icon>
+					<span>{{$t('m.navlang')}}</span><b-icon icon="menu-down"></b-icon>
 				</a>
 
 				<b-dropdown-item has-link>
