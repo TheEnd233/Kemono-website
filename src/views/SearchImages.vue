@@ -2,64 +2,64 @@
 <div id="base-images">
 	<div class="columns search-wrapper">
 		<div class="column is-one-third">
-			<b-field label="Tags">
+			<b-field :label="$t('m.imgsearchtags')">
 				<b-input type="textarea" v-model="options.tags" placeholder="cat ears, tail, paw pose"></b-input>
 			</b-field>
-			<button class="submit button is-primary" @click="getResults(true)"><b-icon icon="magnify"></b-icon>Search</button>
+			<button class="submit button is-primary" @click="getResults(true)"><b-icon icon="magnify"></b-icon>{{$t('m.imgsearchbtn')}}</button>
 		</div>
 		<div class="column is-one-third">
-			<b-field label="Sort">
+			<b-field :label="$t('m.imgsearchsort')">
 				<b-select v-model="options.sort" placeholder="Sort order" expanded icon="sort">
-					<option value="newest" selected>New</option>
-					<option value="oldest">Old</option>
-					<option value="relevance">Relevance</option>
-					<option value="likes">Likes</option>
+					<option value="newest" selected>{{$t('m.imgsearchnew')}}</option>
+					<option value="oldest">{{$t('m.imgsearchold')}}</option>
+					<option value="relevance">{{$t('m.imgsearchrelevance')}}</option>
+					<option value="likes">{{$t('m.imgsearchlikes')}}</option>
 				</b-select>
 			</b-field>
-			<b-field label="NSFW">
+			<b-field :label="$t('m.imgsearchnsfw')">
 				<b-select v-model="options.nsfw" placeholder="Include NSFW results?" expanded icon="minus-circle">
-					<option value="undefined">Show me everything</option>
-					<option value="true">Only NSFW</option>
-					<option value="false" selected>Block NSFW</option>
+					<option value="undefined">{{$t('m.imgsearchshowall')}}</option>
+					<option value="true">{{$t('m.imgsearchonlynsfw')}}</option>
+					<option value="false" selected>{{$t('m.imgsearchblocknsfw')}}</option>
 				</b-select>
 			</b-field>
-			<b-field label="Artist">
+			<b-field :label="$t('m.imgsearchartist')">
 				<b-input icon="brush" v-model="options.artist"></b-input>
 			</b-field>
 		</div>
 		<div class="column is-one-third">
-			<b-field label="Uploaded After">
+			<b-field :label="$t('m.imgsearchuploadafter')">
 				<b-datepicker v-model="options.after" :max-date="options.before" placeholder="Click to select..." icon="calendar">
 					<button class="button is-small is-primary" @click="options.after = new Date()">
 						<b-icon size="is-small" icon="calendar-today"></b-icon>
-						<span>Today</span>
+						<span>{{$t('m.imgsearchtoday')}}</span>
 					</button>
 					<button class="button is-small is-danger" @click="options.after = null">
 						<b-icon size="is-small" icon="close"></b-icon>
-						<span>Clear</span>
+						<span>{{$t('m.imgsearchclear')}}</span>
 					</button>
 				</b-datepicker>
 			</b-field>
-			<b-field label="Uploaded Before">
+			<b-field :label="$t('m.imgsearchuploadbefore')">
 				<b-datepicker v-model="options.before" :min-date="options.after" placeholder="Click to select..." icon="calendar">
 					<button class="button is-small is-primary" @click="options.before = new Date()">
 						<b-icon size="is-small" icon="calendar-today"></b-icon>
-						<span>Today</span>
+						<span>{{$t('m.imgsearchtoday')}}</span>
 					</button>
 					<button class="button is-small is-danger" @click="options.before = null">
 						<b-icon size="is-small" icon="close"></b-icon>
-						<span>Clear</span>
+						<span>{{$t('m.imgsearchclear')}}</span>
 					</button>
 				</b-datepicker>
 			</b-field>
-			<b-field label="Uploader">
+			<b-field :label="$t('m.imgsearchuploader')">
 				<b-input icon="account" v-model="options.uploader"></b-input>
 			</b-field>
 		</div>
 	</div>
 	<hr>
 	<div class="no-results" v-show="!firstSearch && posts.length === 0">
-		<b-message type="is-primary">No posts matched your search. Try providing broader search parameters.</b-message>
+		<b-message type="is-primary">{{$t('m.imgsearchmsg')}}</b-message>
 	</div>
 	<div class="results" v-show="posts.length !== 0">
 		<div class="post-grid-wrapper">
@@ -202,7 +202,7 @@ export default {
 				console.error(error);
 				return this.$dialog.alert({
 					type: 'is-danger',
-					title: 'Error performing search',
+					title: this.$t('m.imgsearcherrtitle'),
 					message: error ? error.response && error.response.data.message || error.message : 'Unknown Error',
 					hasIcon: true
 				});

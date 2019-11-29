@@ -3,18 +3,18 @@
 	<b-modal :active.sync="isDenyActive" has-modal-card>
 		<div class="modal-card">
 			<header class="modal-card-head">
-				<p class="modal-card-title">Deny Post</p>
+				<p class="modal-card-title">{{$t('m.denypost')}}</p>
 			</header>
 			<section class="modal-card-body">
-				<p>What is your reason for denying post {{ denyId }}?</p>
+				<p>{{$t('m.denyreason')}} {{ denyId }}?</p>
 				<br>
 				<b-field label="Reason">
 					<b-input type="textarea" v-model="reason" required></b-input>
 				</b-field>
 			</section>
 			<footer class="modal-card-foot">
-				<button class="button" @click="isDenyActive = false, this.reason = ''">Cancel</button>
-				<button class="button is-primary" @click="reason && deny()">Deny</button>
+				<button class="button" @click="isDenyActive = false, this.reason = ''">{{$t('m.canceldeny')}}</button>
+				<button class="button is-primary" @click="reason && deny()">{{$t('m.confirmdeny')}}</button>
 			</footer>
 		</div>
 	</b-modal>
@@ -50,9 +50,9 @@
 									</div>
 								</div>
 
-								<p v-show="currentlyEditing !== post.id">Artist: {{ post.artist || 'Unknown' }}</p>
-								<div class="field" v-if="currentlyEditing === post.id">Artist: <b-input v-model="post.artist" size="is-small"></b-input></div>
-								<div class="field" v-if="currentlyEditing === post.id"><b-switch v-model="post.nsfw" type="is-danger">Adult Content</b-switch></div>
+								<p v-show="currentlyEditing !== post.id">{{$t('m.artist')}} {{ post.artist || 'Unknown' }}</p>
+								<div class="field" v-if="currentlyEditing === post.id">{{$t('m.artist')}} <b-input v-model="post.artist" size="is-small"></b-input></div>
+								<div class="field" v-if="currentlyEditing === post.id"><b-switch v-model="post.nsfw" type="is-danger"></b-switch>{{$t('m.adultcontent')}}</div>
 								<b-tag
 									v-for="(tag, i) of post.tags"
 									:key="i"
@@ -64,14 +64,16 @@
 									<b-autocomplete v-model="newTag" size="is-small" :data="filteredTags"
 										@input="getFilteredTags" clear-on-select @select="tag => tag && addTag(post, tag)"
 										keep-first expanded></b-autocomplete>
-									<p class="control"><button class="button is-primary is-small" :class="{ 'is-danger': post.nsfw }" @click="addTag(post)">Add tag</button></p>
+									<p class="control"><button class="button is-primary is-small" :class="{ 'is-danger': post.nsfw }" @click="addTag(post)">{{$t('m.addtag')}}</button></p>
 								</b-field>
 							</div>
 							<footer class="card-footer">
-								<a v-show="currentlyEditing !== post.id" @click="confirmApprove(post.id)" class="card-footer-item has-text-success">Approve</a>
-								<a @click="currentlyEditing === post.id ? saveChanges(post) : edit(post.id)" class="card-footer-item" :class="{ 'has-text-success': currentlyEditing === post.id }">{{ currentlyEditing === post.id ? 'Save changes' : 'Edit' }}</a>
-								<a v-show="currentlyEditing === post.id" @click="discard(post, post.id)" class="card-footer-item has-text-danger">Discard changes</a>
-								<a v-show="currentlyEditing !== post.id" @click="promptDeny(post.id)" class="card-footer-item has-text-danger">Deny</a>
+								<a v-show="currentlyEditing !== post.id" @click="confirmApprove(post.id)" class="card-footer-item has-text-success">{{$t('m.approve')}}</a>
+								<a v-show="currentlyEditing !== post.id" @click="edit(post.id)" class="card-footer-item">{{$t('m.edit')}}</a>
+								<!-- <a @click="currentlyEditing === post.id ? saveChanges(post) : edit(post.id)" class="card-footer-item" :class="{ 'has-text-success': currentlyEditing === post.id }">{{ currentlyEditing === post.id ? 'Save changes' : 'Edit' }}</a>-->
+								<a v-show="currentlyEditing === post.id" @click="saveChanges(post)" class="card-footer-item has-text-success">{{$t('m.savechange')}}</a>
+								<a v-show="currentlyEditing === post.id" @click="discard(post, post.id)" class="card-footer-item has-text-danger">{{$t('m.discardchange')}}</a>
+								<a v-show="currentlyEditing !== post.id" @click="promptDeny(post.id)" class="card-footer-item has-text-danger">{{$t('m.deny')}}</a>
 							</footer>
 						</div>
 					</div>
@@ -132,7 +134,7 @@ export default {
 				console.error(error);
 				return this.$dialog.alert({
 					type: 'is-danger',
-					title: 'Error getting pending posts',
+					title: this.$t('m.errgetpendingpost'),
 					message: error ? error.response && error.response.data.message || error.message : 'Unknown Error',
 					hasIcon: true
 				});
@@ -167,7 +169,7 @@ export default {
 
 				this.$snackbar.open({
 					type: 'is-success',
-					message: `Post ${post.id} edited`,
+					message: this.$t('m.postedited1') + post.id + this.$t('m.postedited2'),
 					duration: 3000,
 					position: 'is-bottom-right'
 				});
@@ -178,7 +180,7 @@ export default {
 				console.error(error);
 				this.$dialog.alert({
 					type: 'is-danger',
-					title: 'Error saving changes',
+					title: this.$t('m.errsavechange'),
 					message: error ? error.response && error.response.data.message || error.message : 'Unknown Error',
 					hasIcon: true
 				});
@@ -187,9 +189,9 @@ export default {
 		},
 		confirmApprove(id) {
 			return this.$dialog.confirm({
-				title: 'Approve Post',
-				message: `Are you sure you want to approve post ${id}?`,
-				confirmText: 'Approve',
+				title: this.$t('m.approveposttitle'),
+				message: this.$t('m.approvepostmsg') + id + ` ?`,
+				confirmText: this.$t('approve'),
 				onConfirm: () => this.approve(id)
 			});
 		},
@@ -209,7 +211,7 @@ export default {
 
 				this.$snackbar.open({
 					type: 'is-success',
-					message: `Post ${id} approved`,
+					message: this.$t('m.postapproved1') + id + this.$t('m.postapproved2'),
 					duration: 5000,
 					position: 'is-bottom-right'
 				});
@@ -220,7 +222,7 @@ export default {
 				console.error(error);
 				return this.$dialog.alert({
 					type: 'is-danger',
-					title: 'Error approving post ' + id,
+					title: this.$t('m.errapproving') + id,
 					message: error ? error.response && error.response.data.message || error.message : 'Unknown Error',
 					hasIcon: true
 				});
@@ -249,7 +251,7 @@ export default {
 
 				this.$snackbar.open({
 					type: 'is-success',
-					message: `Post ${this.denyId} denied`,
+					message: this.$t('m.postdenied1') + this.denyId + this.$t('m.postdenied2'),
 					duration: 5000,
 					position: 'is-bottom-right'
 				});
@@ -263,7 +265,7 @@ export default {
 				console.error(error);
 				this.$dialog.alert({
 					type: 'is-danger',
-					title: 'Error denying post ' + this.denyId,
+					title: this.$t('m.errdeny') + this.denyId,
 					message: error ? error.response && error.response.data.message || error.message : 'Unknown Error',
 					hasIcon: true
 				});
@@ -276,9 +278,9 @@ export default {
 		edit(id) {
 			if (this.currentlyEditing)
 				return this.$dialog.confirm({
-					title: 'You are already editing a post',
-					message: 'Do you want to save your changes?',
-					confirmText: 'Save changes',
+					title: this.$t('m.edithinttitle'),
+					message: this.$t('m.edithintmsg'),
+					confirmText: this.$t('m.edithintcomfim'),
 					type: 'is-warning',
 					onConfirm: async () => {
 						let success = await this.saveChanges(); // TODO: Fix undefined post
@@ -306,7 +308,7 @@ export default {
 				console.error(error);
 				return this.$dialog.alert({
 					type: 'is-danger',
-					title: 'Error getting post data',
+					title: this.$t('m.errdiscardtitle'),
 					message: error ? error.response && error.response.data.message || error.message : 'Unknown Error',
 					hasIcon: true
 				});

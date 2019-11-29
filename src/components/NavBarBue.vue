@@ -117,7 +117,7 @@ export default {
 	},
 	methods: {
 	    changeLangEvent(lang) {
-			this.$cookies.set('lang', lang, 999);
+			this.$cookies.set('lang', lang, '999d');
 			window.location.reload();
 	    },
 		logoutUser() {

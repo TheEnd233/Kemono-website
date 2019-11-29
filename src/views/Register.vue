@@ -1,23 +1,23 @@
 <template>
 <div id="base-register">
 	<div class="form">
-		<b-field label="Username" message="Must not contain an @ symbol">
+		<b-field :label="$t('m.reguser')" :message="$t('m.regusermsg')">
 			<b-input name='reg-user' required :maxlength="35" has-counter placeholder="username" icon="account"></b-input>
 		</b-field>
-		<b-field label="Password" message="Min 8 characters">
+		<b-field :label="$t('m.regpasswd')" :message="$t('m.regpasswdmsg')">
 			<b-input name="reg-pass" type="password" :maxlength="70" has-counter password-reveal required placeholder="password" icon="lock"></b-input>
 		</b-field>
-		<b-field label="Confirm Password">
+		<b-field :label="$t('m.regpasswdcomfirm')">
 			<b-input name="reg-confirm" type="password" required placeholder="password" icon="lock"></b-input>
 		</b-field>
-		<b-field label="Email">
-			<b-input name="reg-email" type="email" required :maxlength="70" has-counter placeholder="catgirls@neko.shop" icon="email"></b-input>
+		<b-field :label="$t('m.regemail')">
+			<b-input name="reg-email" type="email" required :maxlength="70" has-counter placeholder="catgirls@gaygay.me" icon="email"></b-input>
 		</b-field>
 		<div class="field">
-			<b-checkbox name="old-enough">I am 13+ years old</b-checkbox>
+			<b-checkbox name="old-enough">{{$t('m.regagecomfirm')}}</b-checkbox>
 		</div>
-		<button class="button is-primary" :class="{ 'is-loading': pending }" @click="register"><b-icon icon="account-plus"></b-icon>Register</button>
-		<b-message v-show="registerError" type="is-danger" id="register-error" has-icon><b>Register Error:</b><br>{{ registerError }}</b-message>
+		<button class="button is-primary" :class="{ 'is-loading': pending }" @click="register"><b-icon icon="account-plus"></b-icon>{{$t('m.regbtn')}}</button>
+		<b-message v-show="registerError" type="is-danger" id="register-error" has-icon><b>{{$t('m.regerrmsg')}}</b><br>{{ registerError }}</b-message>
 	</div>
 </div>
 </template>
@@ -46,8 +46,8 @@ export default {
 				return this.$dialog.alert({
 					type: 'is-warning',
 					hasIcon: true,
-					title: 'Incomplete',
-					message: 'Please complete all fields.'
+					title: this.$t('m.reghinttitle'),
+					message: this.$t('m.reghintmsg')
 				});
 			}
 
@@ -56,8 +56,8 @@ export default {
 				return this.$dialog.alert({
 					type: 'is-warning',
 					hasIcon: true,
-					title: 'Not old enough',
-					message: 'You must be at least 13 years old to make an account.'
+					title: this.$t('m.agehinttitle'),
+					message: this.$t('m.agehintmsg')
 				});
 			}
 
@@ -66,8 +66,8 @@ export default {
 				return this.$dialog.alert({
 					type: 'is-warning',
 					hasIcon: true,
-					title: 'Password does not match',
-					message: 'Make sure you typed your password right.'
+					title: this.$t('m.passwdhinttitle'),
+					message: this.$t('m.passwdhintmsg')
 				});
 			}
 
@@ -80,9 +80,9 @@ export default {
 				return this.$dialog.alert({
 					type: 'is-success',
 					hasIcon: true,
-					title: 'Account Created!',
-					message: `Welcome ${username}! Before you can start using your account you'll need to verify your email using the link we've sent you. It may take a minute to show up.`,
-					confirmText: 'Return to Home',
+					title: this.$t('m.regsuccesstitle'),
+					message: this.$t('m.regsuccessmsg1') + username + this.$t('m.regsuccessmsg2'),
+					confirmText: this.$t('m.regsuccesscomfirm'),
 					onConfirm: () => {
 						this.$router.push('/');
 					}

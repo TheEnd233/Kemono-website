@@ -2,14 +2,14 @@
 <div id="base-upload">
 	<div class="image-picker">
 		<input type="file" id="image" accept=".png,.jpg,.jpeg" @change="previewImage">
-		<button :class="{ 'has-image': hasImage }" id="image-select" @click="clickImage">Select Image</button>
+		<button :class="{ 'has-image': hasImage }" id="image-select" @click="clickImage">{{$t('m.uploadtitle')}}</button>
 		<p :class="{ 'has-image': hasImage }" id="image-details"></p>
-		<b-message type="is-warning" id="small-size-warning" v-show="smallSize" has-icon>This image is less than 100 KB.<br>Are you sure it follows our uploading guidelines?</b-message>
+		<b-message type="is-warning" id="small-size-warning" v-show="smallSize" has-icon>{{$t('m.uploadsizemsg')}}</b-message>
 	</div>
-	<p>New to uploading? <router-link to="/uploading-guidelines">Read our uploading guidelines</router-link></p>
+	<p>{{$t('m.uploadguidemsg1')}} <router-link :to="$t('m.guidelinespath')">{{$t('m.uploadguidemsg2')}}</router-link></p>
 
 	<div class="form">
-		<b-field label="Tags" :message="['Required - Be detailed! There\'s a tag for almost every element of an image']">
+		<b-field :label="$t('m.uploadtagstitle')" :message="[$t('m.uploadtagsmsg')]">
 			<b-taginput
 				v-model="details.tags"
 				maxtags="120"
@@ -20,14 +20,14 @@
 				:data="filteredTags"
 				@typing="getFilteredTags"></b-taginput>
 		</b-field>
-		<b-field label="Artist" message="Use <a href='https://www.iqdb.org/' target='_blank'>iqdb</a> to find the source">
+		<b-field :label="$t('m.uploadartisttitle')" :message="$t('m.uploadartistmsg')">
 			<b-input :maxlength="60" icon="brush" v-model="details.artist"></b-input>
 		</b-field>
-		<b-field label="NSFW">
-			<b-switch type="is-danger" v-model="details.nsfw">This post contains adult content</b-switch>
+		<b-field :label="$t('m.uploadnsfwtitle')">
+			<b-switch type="is-danger" v-model="details.nsfw">{{$t('m.uploadnsfwmsg')}}</b-switch>
 		</b-field>
-		<button class="button" @click="promptForImportId"><b-icon icon="import"></b-icon>Import from danbooru</button>
-		<button class="button is-primary" @click="upload" :class="{ 'is-loading': uploading }"><b-icon icon="upload"></b-icon>Upload</button>
+		<button class="button" @click="promptForImportId"><b-icon icon="import"></b-icon>{{$t('m.uploadimportbtn')}}</button>
+		<button class="button is-primary" @click="upload" :class="{ 'is-loading': uploading }"><b-icon icon="upload"></b-icon>{{$t('m.uploadbtn')}}</button>
 	</div>
 </div>
 </template>
@@ -82,13 +82,13 @@ export default {
 				return this.$dialog.alert({
 					type: 'is-warning',
 					hasIcon: true,
-					title: 'No Tags',
-					message: 'All posts are required to have tags. If you need help tagging posts then head over to the uploading guidelines.'
+					title: this.$t('m.uploadtaghinttitle'),
+					message: this.$t('m.uploadtaghintmsg')
 				});
 
 			let proceed = true;
 			if (this.details.tags.length <= 10)
-				proceed = await this.confirm('Low Tag Count', "Your post doesn't have many tags! We require all posts to have detailed tags so they can be searched easily. If you need help tagging posts then head over to the uploading guidelines.");
+				proceed = await this.confirm(this.$t('m.uploadlowtaghinttitle'), this.$t('m.uploadlowtaghintmsg'));
 
 			if (proceed === false)
 				return;
@@ -98,16 +98,16 @@ export default {
 				return this.$dialog.alert({
 					type: 'is-warning',
 					hasIcon: true,
-					title: 'Missing Image',
-					message: 'Please select an image to post.'
+					title: this.$t('m.uploadimghinttitle'),
+					message: this.$t('m.uploadimghintmsg')
 				});
 			}
 			if (this.size > 3145728) {
 				return this.$dialog.alert({
 					type: 'is-warning',
 					hasIcon: true,
-					title: 'Image Too Large',
-					message: 'The image you selected is too large. Select an image that is less than 3MB in size.'
+					title: this.$t('m.uploadbigimghinttitle'),
+					message: this.$t('m.uploadbigimghintmsg')
 				});
 			}
 
@@ -147,14 +147,14 @@ export default {
 				return this.$dialog.alert({
 					type: 'is-success',
 					hasIcon: true,
-					title: 'Uploaded',
-					message: 'You image has successfully been uploaded. It is now pending approval.',
-					confirmText: 'View Post',
+					title: this.$t('m.uploadsuccesstitle'),
+					message: this.$t('m.uploadsuccessmsg'),
+					confirmText: this.$t('m.uploadsuccessbtn'),
 					onConfirm: () => {
 						this.$router.push('/post/' + response.data.image.id);
 					},
 					canCancel: ['escape', 'button', 'outside'],
-					cancelText: 'Close'
+					cancelText: this.$t('m.uploadcancel')
 				});
 			}).catch(error => {
 				this.uploading = false;
@@ -163,21 +163,21 @@ export default {
 					return this.$dialog.alert({
 						type: 'is-info',
 						hasIcon: true,
-						title: 'Image Already Uploaded',
-						message: 'Sorry, someone else beat you to it :(',
-						confirmText: 'View Post',
+						title: this.$t('m.uploadimgexisttitle'),
+						message: this.$t('m.uploadimgexistmsg'),
+						confirmText: this.$t('m.uploadimgexistbtn'),
 						onConfirm: () => {
 							this.$router.push('/post/' + error.response.data.id);
 						},
 						canCancel: ['escape', 'button', 'outside'],
-						cancelText: 'Close'
+						cancelText: this.$t('m.uploadcancel')
 					});
 				}
 				console.error(error);
 				return this.$dialog.alert({
 					type: 'is-danger',
 					hasIcon: true,
-					title: 'Error Uploading Image',
+					title: this.$t('m.uploaderrtitle'),
 					message: error.response && error.response.data.message || error.message
 				});
 			});
@@ -189,7 +189,7 @@ export default {
 					message,
 					type: 'is-warning',
 					hasIcon: true,
-					confirmText: 'Upload anyways',
+					confirmText: this.$t('m.uploadconfirm'),
 					onConfirm() {
 						return resolve(true);
 					},
@@ -238,7 +238,7 @@ export default {
 		},
 		promptForImportId() {
 			return this.$dialog.prompt({
-				message: "What is the post's ID?",
+				message: this.$t('m.uploadimportmsg'),
 				inputAttrs: {
 					type: 'number',
 					placeholder: '/post/...',
@@ -272,7 +272,7 @@ export default {
 
 				if (!['jpg', 'png', 'jpeg'].includes(response.data.file_ext))
 					return this.$snackbar.open({
-						message: 'Imported image was not a jpg or png',
+						message: this.$t('m.uploadimporttypemsg'),
 						type: 'is-warning'
 					});
 
@@ -280,8 +280,8 @@ export default {
 					return this.$dialog.alert({
 						type: 'is-warning',
 						hasIcon: true,
-						title: 'Image Too Large',
-						message: 'This image was unable to be imported because it exceeds the size limit of 3MB. Please resize the image down to a maximum of 2,000 pixels or convert it to a high-quality JPG.'
+						title: this.$t('m.uploadimportsizetitle'),
+						message: this.$t('m.uploadimportsizemsg')
 					});
 				}
 
@@ -320,7 +320,7 @@ export default {
 				return this.$dialog.alert({
 					type: 'is-danger',
 					hasIcon: true,
-					title: 'Error',
+					title: this.$t('m.uploadimporterr'),
 					message: error.response && error.response.data.message || error.message
 				});
 			}

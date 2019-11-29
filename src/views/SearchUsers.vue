@@ -1,14 +1,14 @@
 <template>
 <div id="search-users">
 	<div class="search">
-		<b-field label="Username or ID">
+		<b-field :label="$t('m.usersearchtitle')">
 			<b-input icon="account" v-model="search"></b-input>
 		</b-field>
-		<button class="submit button is-primary" @click="getResults(true)"><b-icon icon="magnify"></b-icon>Search</button>
+		<button class="submit button is-primary" @click="getResults(true)"><b-icon icon="magnify"></b-icon>{{$t('m.usersearchbtn')}}</button>
 	</div>
 	<div class="no-results" v-show="users.length === 0">
-		<b-message v-show="firstSearch" type="is-primary">Type a username or search all users.</b-message>
-		<b-message v-show="!firstSearch" type="is-primary">No users matched your search.</b-message>
+		<b-message v-show="firstSearch" type="is-primary">{{$t('m.usersearchfirstmsg')}}</b-message>
+		<b-message v-show="!firstSearch" type="is-primary">{{$t('m.usersearchmsg')}}</b-message>
 	</div>
 	<div class="results" v-show="users.length !== 0">
 		<div class="user-grid-wrapper">
@@ -35,7 +35,7 @@
 										</div>
 										<div class="media-content">
 											<p class="title is-5"><router-link :to="'/user/' + user.id">{{ user.username }}</router-link></p>
-											<p class="subtitle is-6">Joined <timeago :since="user.createdAt"></timeago></p>
+											<p class="subtitle is-6">{{$t('m.jointime')}} <timeago :since="user.createdAt"></timeago></p>
 										</div>
 									</div>
 									<p class="stats"><b-icon icon="cloud-upload"></b-icon> {{ user.uploads | humanize }} <b-icon icon="heart" type="is-danger"></b-icon> {{ user.favoritesReceived | humanize }} <b-icon icon="thumb-up" type="is-info"></b-icon> {{ user.likesReceived | humanize }}</p>
@@ -124,7 +124,7 @@ export default {
 				console.error(error);
 				return this.$dialog.alert({
 					type: 'is-danger',
-					title: 'Error performing search',
+					title: this.$t('m.usersearcherr'),
 					message: error ? error.response && error.response.data.message || error.message : 'Unknown Error',
 					hasIcon: true
 				});

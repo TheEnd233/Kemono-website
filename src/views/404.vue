@@ -1,7 +1,7 @@
 <template>
 <div id="base-not-found">
 	<img :src="require('@/../static/images/404.jpg')" alt="Sad catgirl with 404 text :(">
-	<h1 class="title">Page not found</h1>
+	<h1 class="title">{{$t('m.notfound')}}</h1>
 </div>
 </template>
 

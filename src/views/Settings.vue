@@ -1,29 +1,29 @@
 <template>
 <div id="base-settings">
 	<div class="top">
-		<h1 class="title has-text-primary">Settings</h1>
+		<h1 class="title has-text-primary">{{$t('m.settitle')}}</h1>
 	</div>
 
 	<div class="form">
-		<b-field label="NSFW Posts">
-			<b-switch v-model="form.nsfw" type="is-danger">Exclude by default</b-switch>
+		<b-field :label="$t('m.setnsfwtitle')">
+			<b-switch v-model="form.nsfw" type="is-danger">{{$t('m.setnsfwmsg')}}</b-switch>
 		</b-field>
-		<b-field label="Blacklisted tags">
+		<b-field :label="$t('m.setblacktagstitle')">
 			<b-taginput
 				v-model="form.blacklist"
 				maxlength="50"
-				placeholder="bad anatomy"
+				:placeholder="$t('m.setblacktagsmsg')"
 				autocomplete
 				allow-new
 				:data="form.filteredTagsBlacklist"
 				@typing="getFilteredTagsBlacklist"></b-taginput>
 		</b-field>
-		<b-field label="Favorite tags">
+		<b-field :label="$t('m.setfavtagstitle')">
 			<b-taginput
 				v-model="form.savedTags"
 				maxtags="100"
 				maxlength="50"
-				placeholder="paw pose"
+				:placeholder="$t('m.setfavtagsmsg')"
 				autocomplete
 				allow-new
 				:data="form.filteredTagsSaved"
@@ -31,7 +31,7 @@
 		</b-field>
 		<div class="field is-grouped">
 			<div class="control">
-				<button class="button is-primary" @click="save">Save</button>
+				<button class="button is-primary" @click="save">{{$t('m.setsavebtn')}}</button>
 			</div>
 		</div>
 	</div>
@@ -104,7 +104,7 @@ export default {
 
 				return this.$toast.open({
 					type: 'is-success',
-					message: 'Settings saved',
+					message: this.$t('m.setsavehintmsg'),
 					duration: 3000,
 					position: 'is-bottom'
 				});
@@ -112,7 +112,7 @@ export default {
 				console.error(error);
 				return this.$dialog.alert({
 					type: 'is-danger',
-					title: 'Error updating user settings',
+					title: this.$t('m.setsavehinterr'),
 					message: error ? error.response && error.response.data.message || error.message : 'Unknown Error',
 					hasIcon: true
 				});

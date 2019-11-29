@@ -7,6 +7,7 @@ import SearchImages from '@/views/SearchImages';
 import SearchUsers from '@/views/SearchUsers';
 import Upload from '@/views/Upload';
 import UploadingGuidelines from '@/views/UploadingGuidelines';
+import UploadingGuidelinesCN from '@/views/UploadingGuidelinesCN';
 import Post from '@/views/Post';
 import PendingPosts from '@/views/PendingPosts';
 import Profile from '@/views/Profile';
@@ -52,6 +53,11 @@ const routes = [
 		path: '/uploading-guidelines',
 		name: 'uploading-guidelines',
 		component: UploadingGuidelines
+	},
+	{
+		path: '/uploading-guidelines-cn',
+		name: 'uploading-guidelines-cn',
+		component: UploadingGuidelinesCN
 	},
 	{
 		path: '/post/:id',

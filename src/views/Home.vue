@@ -2,8 +2,8 @@
 <div id="base-home">
 	<div class="grid-item left">
 		<div class="welcome">
-			<p class="header">Welcome to Kemono! <b-tag class="beta" type="is-dark">Beta</b-tag></p>
-			<p>Kemono is a collection of high-quality images featuring characters with kemono-girl appearances.</p>
+			<p class="header">{{$t('m.welcometitle')}}<b-tag class="beta" type="is-dark">Beta</b-tag></p>
+			<p>{{$t('m.welcomemessage')}}</p>
 		</div>
 		<!-- <div class="attention" v-if="loggedIn && !seenNotice('newDesign')">
 			<b-message title="Site Updated" type="is-info" has-icon @close="ackNotice('newDesign')">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt ut eligendi laudantium mollitia, dolorum impedit cum exercitationem! Officiis, explicabo dolores minima asperiores, sequi, sit a eaque fugiat corrupti amet et.</b-message>
@@ -14,13 +14,13 @@
 				<b-taginput v-model="searchInput" maxlength="50" :has-counter="false"
 					autocomplete allow-new ellipsis
 					:data="filteredTags" @typing="getFilteredTags"></b-taginput>
-				<button class="button is-success" @click="search"><b-icon icon="magnify" />Search</button>
+				<button class="button is-success" @click="search"><b-icon icon="magnify" />{{$t('m.searchbtn')}}</button>
 			</div>
-			<p class="trailer">Looking for something more specific? Try our <router-link to="/search/images">Advanced Search</router-link></p>
+			<p class="trailer">{{$t('m.searchhint1')}}<router-link to="/search/images">{{$t('m.searchhint2')}}</router-link></p>
 		</div>
 		<div v-if="loggedIn && user.savedTags && user.savedTags.length > 0" class="container-images" id="recPosts">
 			<div class="header">
-				<p>Recommended Posts</p>
+				<p>{{$t('m.recompost')}}</p>
 			</div>
 			<div class="post-previews">
 				 <img v-for="post of recPosts" :key="post.id" :src="THUMBNAIL_BASE_URL + post.id" :alt="post.id" @click="goToPost(post.id)">
@@ -28,43 +28,43 @@
 		</div>
 		<div class="container-images" id="topPosts">
 			<div class="header">
-				<p>Top Posts</p>
+				<p>{{$t('m.toppost')}}</p>
 			</div>
 			<div class="post-previews">
 				 <img v-for="post of topPosts" :key="post.id" :src="THUMBNAIL_BASE_URL + post.id" :alt="post.id" @click="goToPost(post.id)">
 			</div>
 			<div class="trailer">
-				<router-link to="/search/images?sort=likes">View more...</router-link>
+				<router-link to="/search/images?sort=likes">{{$t('m.viewmore')}}</router-link>
 			</div>
 		</div>
 		<div class="container-images" id="newPosts">
 			<div class="header">
-				<p>New Posts</p>
+				<p>{{$t('m.newpost')}}</p>
 			</div>
 			<div class="post-previews">
 				 <img v-for="post of newPosts" :key="post.id" :src="THUMBNAIL_BASE_URL + post.id" :alt="post.id" @click="goToPost(post.id)">
 			</div>
 			<div class="trailer">
-				<router-link to="/search/images?sort=newest">View more...</router-link>
+				<router-link to="/search/images?sort=newest">{{$t('m.viewmore')}}</router-link>
 			</div>
 		</div>
 	</div>
 	<div class="grid-item right">
 		<div class="container-home" id="savedTags">
 			<div class="header">
-				<p>My Favorite Tags</p>
+				<p>{{$t('m.favo')}}</p>
 			</div>
 			<div class="container-content">
 				<ul v-if="loggedIn && user.savedTags && user.savedTags.length > 0" class="tag-list">
 					<router-link v-for="tag of user.savedTags" :key="tag" :to="`/search/images?tags=\u0022${tag}\u0022`">{{ tag }}</router-link>
 				</ul>
-				<p v-else-if="loggedIn">You don't have any favorite tags. <router-link to="/settings">Add some on the settings page.</router-link></p>
-				<p v-else>Create an account to favorite tags.</p>
+				<p v-else-if="loggedIn">{{$t('m.favomessage1')}} <router-link to="/settings">{{$t('m.favomessage2')}}</router-link></p>
+				<p v-else>{{$t('m.favomessage3')}}</p>
 			</div>
 		</div>
 		<div class="container-home" id="randomTags">
 			<div class="header">
-				<p>Explore Random Tags</p>
+				<p>{{$t('m.randomtag')}}</p>
 			</div>
 			<div class="container-content">
 				<ul class="tag-list">
@@ -72,12 +72,12 @@
 				</ul>
 			</div>
 			<div class="container-footer">
-				<router-link to="/search/images">Search everything...</router-link>
+				<router-link to="/search/images">{{$t('m.searchevery')}}</router-link>
 			</div>
 		</div>
 		<div class="container-home" id="discord">
 			<div class="header">
-				<p>Join us on Discord</p>
+				<p>{{$t('m.joingroup')}}</p>
 			</div>
 			<div class="embed">
 				<a href="https://discord.gg/Pk9YBTt">
@@ -176,7 +176,7 @@ export default {
 				console.error(error);
 				return this.$dialog.alert({
 					type: 'is-danger',
-					title: 'Error getting posts',
+					title: this.$t('m.errgetpost'),
 					message: error ? error.response && error.response.data.message || error.message : 'Unknown Error',
 					hasIcon: true
 				});
@@ -199,7 +199,7 @@ export default {
 				console.error(error);
 				return this.$dialog.alert({
 					type: 'is-danger',
-					title: 'Error getting recommended posts',
+					title: this.$t('m.errgetrecompost'),
 					message: error ? error.response && error.response.data.message || error.message : 'Unknown Error',
 					hasIcon: true
 				});

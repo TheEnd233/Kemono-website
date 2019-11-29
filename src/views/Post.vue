@@ -3,44 +3,44 @@
 	<div class="columns">
 		<div class="column is-one-quarter info" v-if="image">
 			<div class="header">
-				<h2>Post Info</h2>
+				<h2>{{$t('m.postinfo')}}</h2>
 			</div>
 
 			<div class="message is-warning" v-if="image.pending">
 				<div class="message-body">
-					This post is pending approval from a moderator. Until it is approved it will be unlisted.
+					{{$t('m.pendingmsg')}}
 				</div>
 			</div>
 
 			<div class="upload-info">
-				<p><strong>Uploader:</strong> <router-link :to="'/user/' + image.uploader.id">{{ image.uploader.username }}</router-link></p>
-				<p v-if="image.approver"><strong>Approver:</strong> <router-link :to="'/user/' + image.approver.id">{{ image.approver.username }}</router-link></p>
-				<p><strong>Uploaded:</strong> {{ new Date(image.createdAt).toLocaleString() }}</p>
-				<p v-if="image.artist"><strong>Artist:</strong> {{ image.artist }}</p>
+				<p><strong>{{$t('m.uploader')}}</strong> <router-link :to="'/user/' + image.uploader.id">{{ image.uploader.username }}</router-link></p>
+				<p v-if="image.approver"><strong>{{$t('m.approver')}}</strong> <router-link :to="'/user/' + image.approver.id">{{ image.approver.username }}</router-link></p>
+				<p><strong>{{$t('m.uploaded')}}</strong> {{ new Date(image.createdAt).toLocaleString() }}</p>
+				<p v-if="image.artist"><strong>{{$t('m.artist')}}</strong> {{ image.artist }}</p>
 			</div>
 
 			<b-field v-if="editMode" label="Artist:" horizontal size="is-small">
 				<b-input v-model="edits.artist" size="is-small"></b-input>
 			</b-field>
 			<div class="field" v-if="editMode">
-				<b-checkbox v-model="edits.nsfw" type="is-danger">Adult Content</b-checkbox>
+				<b-checkbox v-model="edits.nsfw" type="is-danger">{{$t('m.adultcontent')}}</b-checkbox>
 			</div>
 
 			<p class="relationship" v-if="!image.pending">
 				<button v-if="loggedIn && user" class="button is-info" :class="{ 'is-outlined': !user.likes.includes(image.id) }"
-					@click="like"><b-icon icon="thumb-up"></b-icon>{{ image.likes }} Like{{ image.likes !== 1 ? 's' : '' }}</button>
+					@click="like"><b-icon icon="thumb-up"></b-icon>{{ image.likes }} {{$t('m.likebtn')}}{{ image.likes !== 1 ? 's' : '' }}</button>
 				<button v-if="loggedIn && user" class="button is-danger" :class="{ 'is-outlined': !user.favorites.includes(image.id) }"
-					@click="favorite"><b-icon icon="heart"></b-icon>{{ image.favorites }} Favorite{{ image.favorites !== 1 ? 's' : '' }}</button>
+					@click="favorite"><b-icon icon="heart"></b-icon>{{ image.favorites }} {{$t('m.favbtn')}}{{ image.favorites !== 1 ? 's' : '' }}</button>
 
 				<button v-if="!loggedIn || !user" class="button is-white"><b-icon icon="thumb-up">
-					</b-icon>{{ image.likes }} Like{{ image.likes !== 1 ? 's' : '' }}</button>
+					</b-icon>{{ image.likes }} {{$t('m.likebtn')}} {{ image.likes !== 1 ? 's' : '' }}</button>
 				<button v-if="!loggedIn || !user" class="button is-white"><b-icon icon="heart">
-					</b-icon>{{ image.favorites }} Favorite{{ image.favorites !== 1 ? 's' : '' }}</button>
+					</b-icon>{{ image.favorites }} {{$t('m.favbtn')}}{{ image.favorites !== 1 ? 's' : '' }}</button>
 			</p>
 
 			<div class="tags">
 				<div class="sub-header">
-					<p>Tags</p>
+					<p>{{$t('m.posttags')}}</p>
 				</div>
 				<div class="tag-list" :class="{ 'edit-mode': editMode }" v-if="tags && tags.length > 0 && tags[0]">
 					<span v-for="(tag, i) of tags" :key="i" class="tag"
@@ -49,24 +49,24 @@
 						<button v-show="editMode" class="delete is-small" @click="deleteTag(tag)"></button>
 					</span>
 				</div>
-				<p v-else>No tags</p>
+				<p v-else>{{$t('m.postnotags')}}</p>
 
 				<b-field v-if="editMode">
 					<b-input v-model="newTag" size="is-small" placeholder="paw pose" expanded></b-input>
 					<p class="control">
-						<button class="button is-small" @click="addTag">Add tag</button>
+						<button class="button is-small" @click="addTag">{{$t('m.postaddtag')}}</button>
 					</p>
 				</b-field>
 			</div>
 
 			<div class="edit-buttons" v-if="canEdit">
 				<div class="sub-header">
-					<p>Post Options</p>
+					<p>{{$t('m.postoptions')}}</p>
 				</div>
-				<button v-show="!editMode" class="button is-warning" @click="enableEditMode"><b-icon icon="pencil"></b-icon>Edit Post</button>
-				<button v-show="!editMode" class="button is-danger" @click="confirmDelete"><b-icon icon="delete"></b-icon>Delete Post</button>
-				<button v-show="editMode" class="button is-success" @click="saveChanges"><b-icon icon="content-save"></b-icon>Save</button>
-				<button v-show="editMode" class="button is-warning" @click="updateData"><b-icon icon="close"></b-icon>Discard</button>
+				<button v-show="!editMode" class="button is-warning" @click="enableEditMode"><b-icon icon="pencil"></b-icon>{{$t('m.editpost')}}</button>
+				<button v-show="!editMode" class="button is-danger" @click="confirmDelete"><b-icon icon="delete"></b-icon>{{$t('m.delpost')}}</button>
+				<button v-show="editMode" class="button is-success" @click="saveChanges"><b-icon icon="content-save"></b-icon>{{$t('m.savepost')}}</button>
+				<button v-show="editMode" class="button is-warning" @click="updateData"><b-icon icon="close"></b-icon>{{$t('m.discardpost')}}</button>
 			</div>
 		</div>
 		<div class="column image-wrapper" v-if="image">
@@ -133,7 +133,7 @@ export default {
 				console.error(error);
 				this.$dialog.alert({
 					type: 'is-danger',
-					title: 'Error Requesting Image Data',
+					title: this.$t('m.errreqimgdata'),
 					message: error ? error.response && error.response.data.message || error.message : 'Unknown Error',
 					hasIcon: true
 				});
@@ -153,7 +153,7 @@ export default {
 				console.error(error);
 				this.$dialog.alert({
 					type: 'is-danger',
-					title: 'Error Editing Post',
+					title: this.$t('m.erreditpost'),
 					message: error ? error.response && error.response.data.message || error.message : 'Unknown Error',
 					hasIcon: true
 				});
@@ -162,9 +162,9 @@ export default {
 		confirmDelete() {
 			return this.$dialog.confirm({
 				type: 'is-danger',
-				title: 'Delete Post',
-				message: 'Are you sure you want to delete this post? This action cannot be undone.',
-				confirmText: 'Delete',
+				title: this.$t('m.delposttitle'),
+				message: this.$t('m.delpostmsg'),
+				confirmText: this.$t('m.delpostconfirm'),
 				onConfirm: () => this.deletePost(),
 				hasIcon: true
 			});
@@ -181,7 +181,7 @@ export default {
 				console.error(error);
 				this.$dialog.alert({
 					type: 'is-danger',
-					title: 'Error Deleting Image',
+					title: this.$t('m.delposterr'),
 					message: error ? error.response && error.response.data.message || error.message : 'Unknown Error',
 					hasIcon: true
 				});
@@ -223,7 +223,7 @@ export default {
 				console.error(error);
 				this.$dialog.alert({
 					type: 'is-danger',
-					title: 'Error Updating Image Relationship',
+					title: this.$t('m.errupdaterelation'),
 					message: error ? error.response && error.response.data.message || error.message : 'Unknown Error',
 					hasIcon: true
 				});
@@ -257,7 +257,7 @@ export default {
 				console.error(error);
 				this.$dialog.alert({
 					type: 'is-danger',
-					title: 'Error Updating Image Relationship',
+					title: this.$t('m.errupdaterelation'),
 					message: error ? error.response && error.response.data.message || error.message : 'Unknown Error',
 					hasIcon: true
 				});

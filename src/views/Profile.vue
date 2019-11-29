@@ -9,24 +9,24 @@
 		</p>
 		<div class="likes">
 			<b-icon icon="thumb-up"></b-icon>
-			<span>{{ profile.likesReceived | humanize }} Like{{ profile.likesReceived === 1 ? '' : 's' }}</span>
+			<span>{{ profile.likesReceived | humanize }} {{$t('m.likebtn')}}{{ profile.likesReceived === 1 ? '' : 's' }}</span>
 		</div>
 		<div class="favorites">
 			<b-icon icon="heart"></b-icon>
-			<span>{{ profile.favoritesReceived | humanize }} Favorite{{ profile.favoritesReceived === 1 ? '' : 's' }}</span>
+			<span>{{ profile.favoritesReceived | humanize }} {{$t('m.favbtn')}}{{ profile.favoritesReceived === 1 ? '' : 's' }}</span>
 		</div>
 		<div class="stats">
-			<p>Joined <timeago :since="profile.createdAt"></timeago></p>
-			<p>Posted {{ profile.uploads | humanize }} images</p>
-			<p>Has given {{ profile.likes.length | humanize }} like{{ profile.likes.length === 1 ? '' : 's' }} and {{ profile.favorites.length | humanize }} favorite{{ profile.favorites.length === 1 ? '' : 's' }}</p>
+			<p>{{$t('m.jointime')}} <timeago :since="profile.createdAt"></timeago></p>
+			<p>{{$t('m.posted')}} {{ profile.uploads | humanize }} {{$t('m.images')}}</p>
+			<p>{{$t('m.hasgiven')}} {{ profile.likes.length | humanize }} {{$t('m.like')}}{{ profile.likes.length === 1 ? '' : 's' }} {{$t('m.and')}} {{ profile.favorites.length | humanize }} {{$t('m.fav')}}{{ profile.favorites.length === 1 ? '' : 's' }}</p>
 		</div>
 	</div>
 	<div class="post-grid-wrapper">
 		<b-tabs class="post-tabs" type="is-boxed" position="is-centered" @change="changeTab">
-			<b-tab-item label="Posts" icon="format-list-bulleted"></b-tab-item>
-			<b-tab-item label="Likes" icon="thumb-up"></b-tab-item>
-			<b-tab-item label="Favorites" icon="heart"></b-tab-item>
-			<b-tab-item label="Pending" icon="checkbox-multiple-marked-outline" v-if="profile && profile.id === user.id || userCanApprove"></b-tab-item>
+			<b-tab-item :label="$t('m.profileposts')" icon="format-list-bulleted"></b-tab-item>
+			<b-tab-item :label="$t('m.profilelikes')" icon="thumb-up"></b-tab-item>
+			<b-tab-item :label="$t('m.profilefav')" icon="heart"></b-tab-item>
+			<b-tab-item :label="$t('m.profilepending')" icon="checkbox-multiple-marked-outline" v-if="profile && profile.id === user.id || userCanApprove"></b-tab-item>
 		</b-tabs>
 		<div class="pagination-wrapper top">
 			<b-pagination
@@ -123,7 +123,7 @@ export default {
 				console.error(error);
 				return this.$dialog.alert({
 					type: 'is-danger',
-					title: 'Error getting user data',
+					title: this.$t('m.errgetuserdata'),
 					message: error ? error.response && error.response.data.message || error.message : 'Unknown Error',
 					hasIcon: true
 				});
@@ -158,7 +158,7 @@ export default {
 				console.error(error);
 				return this.$dialog.alert({
 					type: 'is-danger',
-					title: 'Error getting image data',
+					title: this.$t('m.errgetimgdata'),
 					message: error ? error.response && error.response.data.message || error.message : 'Unknown Error',
 					hasIcon: true
 				});
@@ -197,7 +197,7 @@ export default {
 				console.error(error);
 				return this.$dialog.alert({
 					type: 'is-danger',
-					title: 'Error getting user uploads',
+					title: this.$t('m.errgetuserupload'),
 					message: error ? error.response && error.response.data.message || error.message : 'Unknown Error',
 					hasIcon: true
 				});
@@ -223,7 +223,7 @@ export default {
 				console.error(error);
 				return this.$dialog.alert({
 					type: 'is-danger',
-					title: 'Error getting user uploads',
+					title: this.$t('m.errgetuserupload'),
 					message: error ? error.response && error.response.data.message || error.message : 'Unknown Error',
 					hasIcon: true
 				});
@@ -265,9 +265,9 @@ export default {
 
 				this.$parent.$delete(this.profile.roles, this.profile.roles.indexOf(role));
 
-				return his.$snackbar.open({
+				return this.$snackbar.open({
 					type: 'is-success',
-					message: `Role ${role} revoked from ${this.profile.username}`,
+					message: this.$t('m.rolerevoked1') + role + this.$t('m.rolerevoked2') + this.profile.username,
 					duration: 5000,
 					position: 'is-bottom-right'
 				});
@@ -275,7 +275,7 @@ export default {
 				console.error(error);
 				return this.$dialog.alert({
 					type: 'is-danger',
-					title: 'Error revoking role',
+					title: this.$t('m.errrevokrole'),
 					message: error ? error.response && error.response.data.message || error.message : 'Unknown Error',
 					hasIcon: true
 				});
@@ -285,9 +285,9 @@ export default {
 		promptGrantRole() {
 			return this.$dialog.prompt({
 				title: 'Add role',
-				message: `What role do you want to add to ${this.profile.username}?`,
+				message: this.$t('m.addrole') + this.profile.username + `?`,
 				inputAttrs: { },
-				confirmText: 'Add',
+				confirmText: this.$t('m.addroleconfirm'),
 				onConfirm: role => this.grantRole(role)
 			});
 		},
@@ -300,7 +300,7 @@ export default {
 
 				this.profile.roles.push(role);
 
-				return his.$snackbar.open({
+				return this.$snackbar.open({
 					type: 'is-success',
 					message: `Role ${role} given to ${this.profile.username}`,
 					duration: 5000,
@@ -310,7 +310,7 @@ export default {
 				console.error(error);
 				return this.$dialog.alert({
 					type: 'is-danger',
-					title: 'Error granting role',
+					title: this.$t('m.errgrantrole'),
 					message: error ? error.response && error.response.data.message || error.message : 'Unknown Error',
 					hasIcon: true
 				});
