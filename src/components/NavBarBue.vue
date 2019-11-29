@@ -65,7 +65,7 @@
 			<b-dropdown v-if="!loggedIn" position="is-bottom-left">
 				<a class="navbar-item has-text-white is-size-5-desktop" slot="trigger">
 					<b-icon icon="login"></b-icon>
-					<span>{{($t('m.navnavlogin'))}}</span>
+					<span>{{($t('m.navlogin'))}}</span>
 				</a>
 
 				<b-dropdown-item custom paddingless>
