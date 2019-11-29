@@ -56,11 +56,6 @@ Vue.use(VueTimeago, {
 	locales: requireAll(require.context("vue-timeago/locales", true, /\.json$/))
 });
 
-Vue.use(VueAnalytics, {
-	id: 'UA-72190085-3',
-	router
-});
-
 const app = new Vue({
 	el: '#app',
 	i18n,
