@@ -22,7 +22,7 @@ const i18n = new VueI18n({
 	messages: {
 		'zh-CN': require('./common/lang/zh'),   // 中文语言包
 		'en-US': require('./common/lang/en')    // 英文语言包
-	}
+    }
 })
 
 Vue.config.productionTip = false;
