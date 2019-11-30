@@ -1,4 +1,4 @@
-# Nekos.moe Website [![Build Status](https://travis-ci.org/brussell98/catgirls-website.svg?branch=master)](https://travis-ci.org/brussell98/catgirls-website)
+# Kemono Website [![Build Status](https://travis-ci.org/oniyakun/Kemono-website.svg?branch=master)](https://travis-ci.org/oniyakun/Kemono-website)
 
 A website for sharing art featuring characters with cat-like appearances
 
