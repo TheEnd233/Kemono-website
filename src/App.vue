@@ -23,7 +23,7 @@ export default {
 		this.$Progress.finish();
 	},
 	created() {
-		console.log('%cHey you! Interested in contributing to Nekos.moe? Check out our repos:\n%chttps://github.com/Nekos-moe/website\nhttps://github.com/Nekos-moe/api\nhttps://github.com/Nekos-moe/docs', 'font-size: 16px; color: #F66D9B', 'text-decoration: underline; color: #039be5')
+		console.log('%cHey you! Interested in contributing to Kemono? Check out our repos:\n%chttps://github.com/oniyakun/Kemono-website', 'font-size: 16px; color: #F66D9B', 'text-decoration: underline; color: #039be5')
 
 		// When App.vue is first loaded start the progress bar
 		this.$Progress.start();

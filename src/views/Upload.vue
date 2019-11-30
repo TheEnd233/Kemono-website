@@ -276,7 +276,7 @@ export default {
 						type: 'is-warning'
 					});
 
-				if (response.data.file_size > 3145728) {
+				if (response.data.file_size > 10145728) {
 					return this.$dialog.alert({
 						type: 'is-warning',
 						hasIcon: true,
