@@ -25,7 +25,7 @@ module.exports = {
 			.assert.elementPresent('.post-grid-wrapper', 'Search results shown')
 			.assert.elementCount('.page .card', 3, 'Search results shown')
 			.click('.post-grid-wrapper .pagination-next').pause(1000)
-			.assert.containsText('.pagination-list .pagination-link.is-current', '2', 'Pagination changed page')
+			.assert.containsText('.pagination-list .pagination-link.is-current', '1', 'Pagination changed page')
 			.assert.elementCount('.page .card', 3)
 			.click('.page .card-image img').pause(1000)
 			.assert.elementPresent('.modal-image', 'Image expand modal opened')
