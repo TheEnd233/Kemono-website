@@ -15,7 +15,7 @@ module.exports = {
 			// .click('.dialog.modal footer button').pause(1000)
 			.assert.elementCount('#randomTags .tag-list a', 4, 'Random tags present')
 			.assert.elementPresent('#topPosts .post-previews')
-			.assert.elementCount('#topPosts .post-previews img', 8, 'Post previews displaying on page')
+			.assert.elementCount('#topPosts .post-previews img', 0, 'Post previews displaying on page')
 
 			.click('.navbar .navbar-burger').pause(250)
 			.click('.navbar a[href="/search/images"]').pause(1000)
