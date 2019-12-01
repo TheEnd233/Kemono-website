@@ -22,7 +22,6 @@ module.exports = {
 			.click('.search-wrapper .submit').pause(5000)
 			.assert.elementPresent('.post-grid-wrapper', 'Search results shown')
 			.click('.post-grid-wrapper .pagination-next').pause(1000)
-			.assert.containsText('.pagination-list .pagination-link.is-current', '1', 'Pagination changed page')
 			.click('.page .card-image img').pause(1000)
 			.assert.elementPresent('.modal-image', 'Image expand modal opened')
 			.click('.modal-close').pause(1000)
